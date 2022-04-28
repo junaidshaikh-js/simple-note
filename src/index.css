@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap");
+
+:root {
+  --primary-font-family: "Montserrat", sans-serif;
+  --secondary-font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: hsl(210, 23%, 95%);
+  font-family: var(--secondary-font-family);
+  line-height: 1.7;
+}
+
+.heading {
+  font-family: var(--primary-font-family);
+}
+
+.wrapper {
+  min-height: 100vh;
+}
