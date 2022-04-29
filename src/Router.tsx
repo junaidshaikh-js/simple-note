@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import {
   LandingPage,
+  Home,
   Archive,
   Trash,
   PageNotFound,
@@ -10,9 +11,12 @@ import {
 } from "./pages";
 
 export const Router = () => {
+  let token = true;
+
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={token ? <Home /> : <LandingPage />} />
+      <Route path="/" element={<Home />} />
       <Route path="/archive" element={<Archive />} />
       <Route path="/trash" element={<Trash />} />
       <Route path="/login" element={<Login />} />
