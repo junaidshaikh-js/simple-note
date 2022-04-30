@@ -1,9 +1,16 @@
+import { CSSProperties } from "react";
 import { AiOutlineBulb, AiOutlineEdit, AiOutlineLogout } from "react-icons/ai";
 import { BiArchiveIn, BiTrash } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 type AsideProps = {
   isSideMenuOpen: boolean;
+};
+
+let activeStyle: CSSProperties = {
+  backgroundColor: "#28292c11",
+  borderTopRightRadius: "999px",
+  borderBottomRightRadius: "999px",
 };
 
 export const Aside = ({ isSideMenuOpen }: AsideProps) => {
@@ -15,13 +22,17 @@ export const Aside = ({ isSideMenuOpen }: AsideProps) => {
     >
       <nav className="flex flex-col py-5 h-full">
         <ul>
-          <li className="pl-5 hover:bg-hoverClr hover:rounded-r-full">
-            <Link to="/" className="flex items-center text-xl my-5 py-2">
+          <li className="hover:bg-hoverClr hover:rounded-r-full">
+            <NavLink
+              to="/"
+              className="pl-5 flex items-center text-xl my-5 py-2 w-full"
+              style={({ isActive }: any) => (isActive ? activeStyle : {})}
+            >
               <span>
                 <AiOutlineBulb className="mr-2" />
               </span>
               Notes
-            </Link>
+            </NavLink>
           </li>
           <li className="flex items-center text-xl my-5 py-2 pl-5 whitespace-nowrap hover:bg-hoverClr hover:rounded-r-full">
             <span>
@@ -29,24 +40,29 @@ export const Aside = ({ isSideMenuOpen }: AsideProps) => {
             </span>
             Edit labels
           </li>
-          <li className="pl-5 hover:bg-hoverClr hover:rounded-r-full">
-            <Link
+          <li className=" hover:bg-hoverClr hover:rounded-r-full">
+            <NavLink
               to="/archive"
-              className="flex items-center text-xl my-5 py-2 "
+              className="pl-5 flex items-center text-xl my-5 py-2"
+              style={({ isActive }: any) => (isActive ? activeStyle : {})}
             >
               <span>
                 <BiArchiveIn className="mr-2" />
               </span>
               Archive
-            </Link>
+            </NavLink>
           </li>
-          <li className="hover:bg-hoverClr hover:rounded-r-full pl-5">
-            <Link to="/trash" className="flex items-center text-xl my-5 py-2">
+          <li className="hover:bg-hoverClr hover:rounded-r-full">
+            <NavLink
+              to="/trash"
+              className="flex items-center text-xl my-5 py-2 pl-5"
+              style={({ isActive }: any) => (isActive ? activeStyle : {})}
+            >
               <span>
                 <BiTrash className="mr-2" />
               </span>
               Trash
-            </Link>
+            </NavLink>
           </li>
         </ul>
 
