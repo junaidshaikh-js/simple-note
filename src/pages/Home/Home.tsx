@@ -1,7 +1,7 @@
-export const Archive = () => {
+export const Home = () => {
   return (
     <div className="md:ml-72">
-      <main>Archive</main>
+      <main>Home Page</main>
     </div>
   );
 };
