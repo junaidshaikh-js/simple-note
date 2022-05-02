@@ -11,7 +11,7 @@ import {
 } from "./pages";
 
 export const Router = () => {
-  let token = true;
+  let token = false;
 
   return (
     <Routes>

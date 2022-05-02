@@ -20,5 +20,19 @@ body {
 }
 
 .wrapper {
-  min-height: 100vh;
+  min-height: 90vh;
+}
+
+.form-wrapper {
+  width: min(90vw, 480px);
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.field-required::after {
+  content: "*";
+  color: red;
+  margin-left: 5px;
 }
