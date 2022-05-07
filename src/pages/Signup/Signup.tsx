@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaChevronCircleRight } from "react-icons/fa";
 
-import { Header, FormRow, PrimaryBtn } from "../../components";
+import { Header, FormRow, PrimaryBtn, Loader } from "../../components";
 import { validateForm } from "./utils";
 import {
   ChangeEvent,
@@ -10,6 +10,7 @@ import {
   SetFormValues,
   SignupFormErrorsType,
 } from "./signup.types";
+import { useAuth } from "../../context";
 
 export const Signup = () => {
   const initialState = {
@@ -27,6 +28,8 @@ export const Signup = () => {
     password: false,
     confirmPassword: false,
   });
+
+  const { createUser, loading } = useAuth();
 
   const handleChange = (e: ChangeEvent, setSignupFormValues: SetFormValues) => {
     const { id, value } = e.target;
@@ -51,6 +54,12 @@ export const Signup = () => {
     const errors = validateForm(signupFormValues);
 
     setSignupFormErrors(errors);
+
+    for (let value of Object.values(errors)) {
+      if (value !== "") return;
+    }
+
+    createUser(signupFormValues.email, signupFormValues.password);
   };
 
   return (
@@ -124,7 +133,7 @@ export const Signup = () => {
               handleShowPassword={() => handlevisibility("confirmPassword")}
             />
 
-            <PrimaryBtn type="submit" cnames="w-full">
+            <PrimaryBtn type="submit" cnames="w-full" disable={loading}>
               Create a new account
             </PrimaryBtn>
           </form>
@@ -138,6 +147,8 @@ export const Signup = () => {
             </Link>
           </div>
         </main>
+
+        {loading && <Loader />}
       </div>
     </>
   );

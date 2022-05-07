@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
+import { useAuth } from "./context";
+
 import {
   LandingPage,
   Home,
@@ -11,11 +13,11 @@ import {
 } from "./pages";
 
 export const Router = () => {
-  let token = false;
+  const authData = useAuth();
 
   return (
     <Routes>
-      <Route path="/" element={token ? <Home /> : <LandingPage />} />
+      <Route path="/" element={authData?.uid ? <Home /> : <LandingPage />} />
       <Route path="/" element={<Home />} />
       <Route path="/archive" element={<Archive />} />
       <Route path="/trash" element={<Trash />} />

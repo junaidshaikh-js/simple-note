@@ -3,6 +3,9 @@ import { AiOutlineBulb, AiOutlineEdit, AiOutlineLogout } from "react-icons/ai";
 import { BiArchiveIn, BiTrash } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 
+import { useAuth } from "../../context";
+import { Loader } from "../loader/Loader";
+
 type AsideProps = {
   isSideMenuOpen: boolean;
 };
@@ -14,12 +17,15 @@ let activeStyle: CSSProperties = {
 };
 
 export const Aside = ({ isSideMenuOpen }: AsideProps) => {
+  const authData = useAuth();
+
   return (
     <div
       className={`overflow-hidden absolute bg-grey h-90 transition-all md:fixed md:w-64 md:shadow-none ${
         isSideMenuOpen ? "w-6/12 shadow pr-5" : "w-0"
       }`}
     >
+      {authData.loading && <Loader />}
       <nav className="flex flex-col py-5 h-full">
         <ul>
           <li className="hover:bg-hoverClr hover:rounded-r-full">
@@ -68,7 +74,7 @@ export const Aside = ({ isSideMenuOpen }: AsideProps) => {
 
         <div className="flex items-center justify-between pl-5 text-xl text-primary mt-auto hover:font-bold">
           <span>Junaid</span>
-          <button>
+          <button onClick={() => authData.logout()}>
             <AiOutlineLogout />
             <span className="sr-only">Logout</span>
           </button>

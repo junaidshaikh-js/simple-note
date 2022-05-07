@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaChevronCircleRight } from "react-icons/fa";
 
-import { PrimaryBtn, Header, FormRow } from "../../components";
+import {
+  PrimaryBtn,
+  Header,
+  FormRow,
+  PrimaryOutlineBtn,
+  Loader,
+} from "../../components";
 import { validateForm } from "./utils/utils";
+import { useAuth } from "../../context";
 
 export const Login = () => {
   const initialState = {
@@ -14,6 +21,8 @@ export const Login = () => {
   const [loginFormValues, setLoginFormValues] = useState(initialState);
   const [loginFormErrors, setLoginFormErrors] = useState(initialState);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const { loading, login } = useAuth();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -35,6 +44,12 @@ export const Login = () => {
     const errors = validateForm(loginFormValues);
 
     setLoginFormErrors(errors);
+
+    for (let value of Object.values(errors)) {
+      if (value !== "") return;
+    }
+
+    login(loginFormValues.email, loginFormValues.password);
   };
 
   return (
@@ -68,10 +83,19 @@ export const Login = () => {
               handleShowPassword={() => setIsPasswordVisible((i) => !i)}
             />
 
-            <PrimaryBtn type="submit" cnames="w-full">
-              Login
+            <PrimaryBtn type="submit" cnames="w-full" disable={loading}>
+              Log in
             </PrimaryBtn>
           </form>
+
+          <PrimaryOutlineBtn
+            type="submit"
+            cnames="w-full mb-3"
+            disable={loading}
+            onClick={() => login("sj.shaikhjunaid@gmail.com", "junaid123")}
+          >
+            Log in as Guest
+          </PrimaryOutlineBtn>
 
           <div>
             <Link
@@ -82,6 +106,8 @@ export const Login = () => {
             </Link>
           </div>
         </main>
+
+        {loading && <Loader />}
       </div>
     </>
   );
