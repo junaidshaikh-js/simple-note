@@ -76,7 +76,6 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     await signOut(auth);
     setUid("");
     console.log("running after 69");
-    // localStorage.removeItem("userId");
     toast.success("logged out successfully");
     setIsloading(false);
     navigate("/");
