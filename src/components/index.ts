@@ -5,6 +5,7 @@ import { FormRow } from "./FormRow/FormRow";
 import { PrimaryOutlineBtn } from "./buttons/PrimaryOutlineBtn";
 import { InlineLoader } from "./loader/InlineLoder";
 import { Loader } from "./loader/Loader";
+import { RequireAuth } from "./RequireAuth/RequireAuth";
 
 export {
   PrimaryBtn,
@@ -14,4 +15,5 @@ export {
   FormRow,
   InlineLoader,
   Loader,
+  RequireAuth,
 };

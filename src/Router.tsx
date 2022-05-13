@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { RequireAuth } from "./components";
 
 import { useAuth } from "./context";
 
@@ -17,12 +18,39 @@ export const Router = () => {
 
   return (
     <Routes>
-      <Route path="/" element={authData?.uid ? <Home /> : <LandingPage />} />
-      <Route path="/" element={<Home />} />
-      <Route path="/archive" element={<Archive />} />
-      <Route path="/trash" element={<Trash />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route path="/" element={authData.uid ? <Home /> : <LandingPage />} />
+      <Route
+        path="/archive"
+        element={
+          <RequireAuth>
+            <Archive />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/trash"
+        element={
+          <RequireAuth>
+            <Trash />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <RequireAuth>
+            <Login />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <RequireAuth>
+            <Signup />
+          </RequireAuth>
+        }
+      />
       <Route path="/*" element={<PageNotFound />} />
     </Routes>
   );

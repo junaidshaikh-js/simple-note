@@ -37,12 +37,21 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   const navigate = useNavigate();
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setUid(user.uid);
-      localStorage.setItem("userId", JSON.stringify(user.uid));
-    }
-  });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUid(user.uid);
+        localStorage.setItem("userId", JSON.stringify(user.uid));
+      } else {
+        setUid("");
+        localStorage.removeItem("userId");
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [uid]);
 
   const login = async (email: string, password: string) => {
     try {
@@ -66,7 +75,7 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     setIsloading(true);
     await signOut(auth);
     setUid("");
-    localStorage.removeItem("userId");
+    console.log("running after 69");
     toast.success("logged out successfully");
     setIsloading(false);
     navigate("/");
