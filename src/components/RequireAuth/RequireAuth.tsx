@@ -13,12 +13,12 @@ export const RequireAuth = ({ children }: RequireAuthProps) => {
   const from = location;
 
   if (
-    (location.pathname === "/login" || location.pathname === "signup") &&
+    (location.pathname === "/login" || location.pathname === "/signup") &&
     uid
   ) {
     return <Navigate to="/" />;
   } else if (
-    (location.pathname === "/login" || location.pathname === "signup") &&
+    (location.pathname === "/login" || location.pathname === "/signup") &&
     !uid
   ) {
     return <>{children}</>;
