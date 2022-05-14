@@ -6,6 +6,8 @@ import { PrimaryOutlineBtn } from "./buttons/PrimaryOutlineBtn";
 import { InlineLoader } from "./loader/InlineLoder";
 import { Loader } from "./loader/Loader";
 import { RequireAuth } from "./RequireAuth/RequireAuth";
+import { AddNote } from "./AddNote/AddNote";
+import { NoteCard } from "./NoteCard/NoteCard";
 
 export {
   PrimaryBtn,
@@ -16,4 +18,6 @@ export {
   InlineLoader,
   Loader,
   RequireAuth,
+  AddNote,
+  NoteCard,
 };
