@@ -5,11 +5,12 @@ import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context";
 import { PrimaryOutlineBtn } from "../buttons/PrimaryOutlineBtn";
 import { addNote } from "../../utils/server-request";
+import { NoteTextareaInput, TitleInput } from "../NoteFormInput";
 
 export const AddNote = () => {
   const initialNoteDetails = {
     title: "",
-    note: "",
+    noteText: "",
   };
 
   const [isNoteAdding, setIsNoteAdding] = useState(false);
@@ -22,13 +23,13 @@ export const AddNote = () => {
   const handleCreateNote = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    if (!noteDetails.note) {
+    if (!noteDetails.noteText && !noteDetails.title) {
       setIsNoteAdding(false);
     } else {
       const note = {
         id: uuidv4(),
         title: noteDetails.title,
-        noteText: noteDetails.note,
+        noteText: noteDetails.noteText,
         dateCreated: new Date(),
         isArchived: false,
         isInTrash: false,
@@ -53,7 +54,7 @@ export const AddNote = () => {
   ) => {
     const { name: key, value } = e.target;
 
-    if (key === "note") {
+    if (key === "noteText") {
       textArea.current.style.height = textArea.current.scrollHeight + "px";
     }
 
@@ -73,44 +74,22 @@ export const AddNote = () => {
     <section className="my-5 p-2 max-width-md mx-auto rounded border border-black">
       <form className="flex flex-col">
         {isNoteAdding && (
-          <div>
-            <label htmlFor="title" className="sr-only">
-              Title
-            </label>
-
-            <input
-              type="text"
-              id="title"
-              placeholder="Title"
-              className="bg-transparent border-none outline-none my-2 p-1 placeholder:text-black placeholder:text-xl font-semibold text-xl"
-              value={noteDetails.title}
-              name="title"
-              onChange={handleNoteChange}
-            />
-          </div>
+          <TitleInput
+            value={noteDetails.title}
+            changeHandler={handleNoteChange}
+          />
         )}
 
-        <div>
-          <label htmlFor="note" className="sr-only">
-            Take a note
-          </label>
-
-          <textarea
-            id="note"
-            rows={1}
-            ref={textArea}
-            placeholder="Take a note..."
-            className="bg-transparent outline-none border-none my-2 p-1 w-full  overflow-hidden	 resize-none placeholder:text-black placeholder:text-lg"
-            value={noteDetails.note}
-            name="note"
-            onChange={handleNoteChange}
-            onClick={() => {
-              if (!isNoteAdding) {
-                setIsNoteAdding(true);
-              }
-            }}
-          />
-        </div>
+        <NoteTextareaInput
+          refObject={textArea}
+          value={noteDetails.noteText}
+          clickHandler={() => {
+            if (!isNoteAdding) {
+              setIsNoteAdding(true);
+            }
+          }}
+          changeHandler={handleNoteChange}
+        />
 
         {isNoteAdding && (
           <div className="ml-auto mr-5">
