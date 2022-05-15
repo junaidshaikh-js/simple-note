@@ -13,7 +13,7 @@ type NoteCardProps = {
 
 export const NoteCard = ({ title, noteText }: NoteCardProps) => {
   return (
-    <article className="p-2 my-5 border-2 border-black rounded-lg max-w-3xl mx-auto">
+    <article className="p-2 my-5 border-2 border-black rounded-lg max-w-3xl mx-auto whitespace-pre-wrap break-words">
       <h2 className="text-xl font-semibold text-xl mb-3">{title}</h2>
 
       <p>{noteText}</p>
