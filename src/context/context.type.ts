@@ -4,7 +4,7 @@ export type childrenType = React.ReactNode;
 export type authFunction = () => Promise<void>;
 export type NoteType = {
   id: string;
-  title: string;
+  title?: string;
   noteText: string;
   dateCreated: Date;
   isArchived: boolean;
