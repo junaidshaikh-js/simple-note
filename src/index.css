@@ -25,7 +25,7 @@ body {
 
 .form-wrapper,
 .max-width-md {
-  width: min(90vw, 480px);
+  width: min(90vw, 598px);
 }
 
 .bg-white {
@@ -40,4 +40,8 @@ body {
 
 .bg-transparent {
   background-color: transparent;
+}
+
+.bg-wrapper {
+  background-color: hsla(0, 0%, 0%, 0.3);
 }
