@@ -7,9 +7,10 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { doc, setDoc } from "firebase/firestore";
 
 import { childrenType, authFunction } from "./context.type";
-import { auth } from "../config/firebase-config";
+import { auth, db } from "../config/firebase-config";
 
 type AuthContextProviderProps = {
   children: childrenType;
@@ -20,7 +21,11 @@ type AuthContextType = {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: authFunction;
-  createUser: (email: string, password: string) => Promise<void>;
+  createUser: (
+    email: string,
+    password: string,
+    firstName: string
+  ) => Promise<void>;
 };
 
 const AuthContext = createContext({} as AuthContextType);
@@ -41,7 +46,7 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUid(user.uid);
-        localStorage.setItem("userId", JSON.stringify(user.uid));
+        localStorage.setItem("userId", user.uid);
       } else {
         setUid("");
         localStorage.removeItem("userId");
@@ -75,13 +80,16 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     setIsloading(true);
     await signOut(auth);
     setUid("");
-    console.log("running after 69");
     toast.success("logged out successfully");
     setIsloading(false);
     navigate("/");
   };
 
-  const createUser = async (email: string, password: string) => {
+  const createUser = async (
+    email: string,
+    password: string,
+    firstName: string
+  ) => {
     try {
       setIsloading(true);
       const { user } = await createUserWithEmailAndPassword(
@@ -89,6 +97,13 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         email,
         password
       );
+
+      const notesRef = doc(db, "notes", user.uid);
+      setDoc(notesRef, {
+        userId: user.uid,
+        labels: [],
+        notes: [],
+      });
 
       localStorage.setItem("userId", JSON.stringify(user.uid));
 

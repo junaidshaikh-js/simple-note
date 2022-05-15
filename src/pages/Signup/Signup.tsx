@@ -59,7 +59,11 @@ export const Signup = () => {
       if (value !== "") return;
     }
 
-    createUser(signupFormValues.email, signupFormValues.password);
+    createUser(
+      signupFormValues.email,
+      signupFormValues.password,
+      signupFormValues.firstName
+    );
   };
 
   return (

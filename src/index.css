@@ -23,7 +23,8 @@ body {
   min-height: 90vh;
 }
 
-.form-wrapper {
+.form-wrapper,
+.max-width-md {
   width: min(90vw, 480px);
 }
 
@@ -35,4 +36,8 @@ body {
   content: "*";
   color: red;
   margin-left: 5px;
+}
+
+.bg-transparent {
+  background-color: transparent;
 }

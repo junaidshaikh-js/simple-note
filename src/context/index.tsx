@@ -1,8 +1,14 @@
 import { AuthContextProvider, useAuth } from "./authContext";
+import { DataContextProvider, useData } from "./data-context";
+
 import { childrenType } from "./context.type";
 
 const Provider = ({ children }: { children: childrenType }) => {
-  return <AuthContextProvider>{children}</AuthContextProvider>;
+  return (
+    <AuthContextProvider>
+      <DataContextProvider>{children}</DataContextProvider>
+    </AuthContextProvider>
+  );
 };
 
-export { Provider, useAuth };
+export { Provider, useAuth, useData };

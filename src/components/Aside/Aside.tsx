@@ -3,7 +3,7 @@ import { AiOutlineBulb, AiOutlineEdit, AiOutlineLogout } from "react-icons/ai";
 import { BiArchiveIn, BiTrash } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 
-import { useAuth } from "../../context";
+import { useAuth, useData } from "../../context";
 import { Loader } from "../loader/Loader";
 
 type AsideProps = {
@@ -18,6 +18,7 @@ let activeStyle: CSSProperties = {
 
 export const Aside = ({ isSideMenuOpen }: AsideProps) => {
   const authData = useAuth();
+  const { setNotes } = useData();
 
   return (
     <div
@@ -74,7 +75,12 @@ export const Aside = ({ isSideMenuOpen }: AsideProps) => {
 
         <div className="flex items-center justify-between pl-5 text-xl text-primary mt-auto hover:font-bold">
           <span>Junaid</span>
-          <button onClick={() => authData.logout()}>
+          <button
+            onClick={async () => {
+              await authData.logout();
+              setNotes([]);
+            }}
+          >
             <AiOutlineLogout />
             <span className="sr-only">Logout</span>
           </button>
