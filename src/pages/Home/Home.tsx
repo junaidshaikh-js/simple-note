@@ -13,6 +13,8 @@ export const Home = () => {
     }
   }, [uid]);
 
+  const filteredNotes = notes.filter((note) => !note.isInTrash);
+
   return (
     <div className="md:ml-72">
       {isLoading ? (
@@ -22,8 +24,15 @@ export const Home = () => {
           <AddNote />
 
           <section>
-            {notes.map((note) => {
-              return <NoteCard title={note.title} noteText={note.noteText} />;
+            {filteredNotes.map((note) => {
+              return (
+                <NoteCard
+                  title={note.title}
+                  noteText={note.noteText}
+                  id={note.id}
+                  key={note.id}
+                />
+              );
             })}
           </section>
         </main>
