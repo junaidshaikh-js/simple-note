@@ -8,6 +8,7 @@ import { Loader } from "./loader/Loader";
 import { RequireAuth } from "./RequireAuth/RequireAuth";
 import { AddNote } from "./AddNote/AddNote";
 import { NoteCard } from "./NoteCard/NoteCard";
+import { TrashCard } from "./TrashCard/TrashCard";
 
 export {
   PrimaryBtn,
@@ -20,4 +21,5 @@ export {
   RequireAuth,
   AddNote,
   NoteCard,
+  TrashCard,
 };
