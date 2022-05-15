@@ -10,9 +10,12 @@ import { useState } from "react";
 import { handleNoteDelete } from "./note-card-actions";
 import { useData } from "../../context";
 import { NoteCardProps } from "../component.types";
+import { ReactPortal } from "../ReactPortal/ReactPortal";
+import { Modal } from "../Modal/Modal";
 
 export const NoteCard = ({ title, noteText, id }: NoteCardProps) => {
   const [showActionBtn, setShowActionBtn] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const { notes, setNotes } = useData();
 
@@ -22,15 +25,23 @@ export const NoteCard = ({ title, noteText, id }: NoteCardProps) => {
       onMouseEnter={() => setShowActionBtn(true)}
       onMouseLeave={() => setShowActionBtn(false)}
     >
-      <div>
-        <h2 className="text-xl font-semibold text-xl mb-3">{title}</h2>
+      <div onClick={() => setShowModal(true)} className="cursor-pointer">
+        <h2 className="text-xl font-semibold text-xl mb-3 text-ellipsis	whitespace-nowrap	overflow-hidden mb-5">
+          {title}
+        </h2>
 
-        <p>{noteText}</p>
+        <p>
+          {noteText ? (
+            noteText
+          ) : (
+            <span className="text-gray-400">Empty Note</span>
+          )}
+        </p>
       </div>
 
       <div
         className={`mt-5 mb-2 mx-5 flex justify-between text-2xl md:justify-end transition-opacity ${
-          showActionBtn ? "opacity-1" : "opacity-0"
+          showActionBtn ? "md:opacity-1" : "md:opacity-0"
         }`}
       >
         <button className="md:mr-5">
@@ -52,6 +63,17 @@ export const NoteCard = ({ title, noteText, id }: NoteCardProps) => {
           <MdOutlineContentCopy title="Make a copy" />
         </button>
       </div>
+
+      {showModal && (
+        <ReactPortal>
+          <Modal
+            title={title}
+            noteText={noteText}
+            id={id}
+            setShowModal={setShowModal}
+          />
+        </ReactPortal>
+      )}
     </article>
   );
 };

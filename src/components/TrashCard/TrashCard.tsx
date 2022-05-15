@@ -20,7 +20,7 @@ export const TrashCard = ({ title, noteText, id }: NoteCardProps) => {
 
       <div
         className={`mt-5 mb-2 mx-2 flex text-2xl transition-opacity ${
-          showActionBtn ? "opacity-1" : "opacity-0"
+          showActionBtn ? "md:opacity-1" : "md:opacity-0"
         }`}
       >
         <button className="mr-5">
