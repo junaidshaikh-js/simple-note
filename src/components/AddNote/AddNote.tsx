@@ -1,5 +1,6 @@
 import { useState, MouseEvent, ChangeEvent, useRef } from "react";
 import toast from "react-hot-toast";
+import { v4 as uuidv4 } from "uuid";
 
 import { useData } from "../../context";
 import { PrimaryOutlineBtn } from "../buttons/PrimaryOutlineBtn";
@@ -25,6 +26,7 @@ export const AddNote = () => {
       setIsNoteAdding(false);
     } else {
       const note = {
+        id: uuidv4(),
         title: noteDetails.title,
         noteText: noteDetails.note,
         dateCreated: new Date(),
