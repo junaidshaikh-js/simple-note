@@ -3,12 +3,13 @@ import ReactLoading from "react-loading";
 export function Loader() {
   const centerLoader: React.CSSProperties = {
     display: "flex",
-    height: "70vh",
-    width: "95vw",
+    height: "100vh",
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
     top: "0",
+    left: 0,
   };
 
   return (
