@@ -9,6 +9,8 @@ import { RequireAuth } from "./RequireAuth/RequireAuth";
 import { AddNote } from "./AddNote/AddNote";
 import { NoteCard } from "./NoteCard/NoteCard";
 import { TrashCard } from "./TrashCard/TrashCard";
+import { Modal } from "./Modal/Modal";
+import { ReactPortal } from "./ReactPortal/ReactPortal";
 
 export {
   PrimaryBtn,
@@ -22,4 +24,6 @@ export {
   AddNote,
   NoteCard,
   TrashCard,
+  Modal,
+  ReactPortal,
 };
