@@ -6,10 +6,10 @@ export type NoteType = {
   id: string;
   title?: string;
   noteText: string;
-  dateCreated: Date;
+  dateCreated: number;
   isArchived: boolean;
   isInTrash: boolean;
   bgColor: string;
   labels: string[];
-  updatedAt: Date;
+  updatedAt: number;
 };
