@@ -1,9 +1,9 @@
 import { MdOutlineDelete, MdOutlineRestoreFromTrash } from "react-icons/md";
 import { useState } from "react";
 
-import { NoteCardProps } from "../component.types";
+import { TrashCardProps } from "../component.types";
 
-export const TrashCard = ({ title, noteText, id }: NoteCardProps) => {
+export const TrashCard = ({ title, noteText, id }: TrashCardProps) => {
   const [showActionBtn, setShowActionBtn] = useState(false);
 
   return (
