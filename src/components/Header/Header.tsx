@@ -7,7 +7,7 @@ type HeaderProps = {
 
 export const Header = ({ setIsSideMenuOpen }: HeaderProps) => {
   return (
-    <div className="bg-white sticky top-0 border-b border-black">
+    <div className="bg-white z-10	 sticky top-0 border-b border-black">
       <header className="bg-white p-3 flex items-center	md:ml-10">
         <div
           className="mr-5 cursor-pointer md:hidden"
