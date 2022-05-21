@@ -12,6 +12,7 @@ import { TrashCard } from "./TrashCard/TrashCard";
 import { Modal } from "./Modal/Modal";
 import { ReactPortal } from "./ReactPortal/ReactPortal";
 import { SortByDate } from "./SortByDate/SortByDate";
+import { ColorBox } from "./ColorBox/ColorBox";
 
 export {
   PrimaryBtn,
@@ -28,4 +29,5 @@ export {
   Modal,
   ReactPortal,
   SortByDate,
+  ColorBox,
 };
