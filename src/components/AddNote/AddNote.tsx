@@ -30,12 +30,12 @@ export const AddNote = () => {
         id: uuidv4(),
         title: noteDetails.title,
         noteText: noteDetails.noteText,
-        dateCreated: new Date().getDate(),
+        dateCreated: new Date().getTime(),
         isArchived: false,
         isInTrash: false,
         bgColor: "white",
         labels: [],
-        updatedAt: new Date().getDate(),
+        updatedAt: new Date().getTime(),
       };
 
       const notesList = [...notes, note];
