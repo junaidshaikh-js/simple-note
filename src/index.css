@@ -32,6 +32,26 @@ body {
   background-color: #fff;
 }
 
+.bg-black {
+  background-color: #000000;
+}
+
+.bg-red {
+  background-color: #802f2c;
+}
+
+.bg-yellow {
+  background-color: #7e7616;
+}
+
+.bg-green {
+  background-color: #427d23;
+}
+
+.bg-purple {
+  background-color: rgb(164, 11, 164);
+}
+
 .field-required::after {
   content: "*";
   color: red;
