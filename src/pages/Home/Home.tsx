@@ -39,6 +39,7 @@ export const Home = () => {
                   noteText={note.noteText}
                   id={note.id}
                   key={note.id}
+                  updatedAt={note.updatedAt}
                 />
               );
             })}

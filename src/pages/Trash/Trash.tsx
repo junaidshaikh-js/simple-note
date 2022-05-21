@@ -16,6 +16,7 @@ export const Trash = () => {
               noteText={note.noteText}
               id={note.id}
               key={note.id}
+              updatedAt={note.updatedAt}
             />
           );
         })}

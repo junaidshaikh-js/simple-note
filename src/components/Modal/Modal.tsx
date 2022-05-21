@@ -58,7 +58,7 @@ export const Modal = ({ title, noteText, id, setShowModal }: ModalProps) => {
           ...note,
           title: noteDetails.title,
           noteText: noteDetails.noteText,
-          updatedAt: new Date().getTime(),
+          updatedAt: Date.now(),
         };
       }
 

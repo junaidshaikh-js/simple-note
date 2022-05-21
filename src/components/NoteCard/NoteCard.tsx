@@ -13,11 +13,12 @@ import { NoteCardProps } from "../component.types";
 import { ReactPortal } from "../ReactPortal/ReactPortal";
 import { Modal } from "../Modal/Modal";
 
-export const NoteCard = ({ title, noteText, id }: NoteCardProps) => {
+export const NoteCard = ({ title, noteText, id, updatedAt }: NoteCardProps) => {
   const [showActionBtn, setShowActionBtn] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const { notes, setNotes } = useData();
+  const noteDate = new Date(updatedAt);
 
   return (
     <article
@@ -39,29 +40,35 @@ export const NoteCard = ({ title, noteText, id }: NoteCardProps) => {
         </p>
       </div>
 
-      <div
-        className={`mt-5 mb-2 mx-5 flex justify-between text-2xl md:justify-end transition-opacity ${
-          showActionBtn ? "md:opacity-1" : "md:opacity-0"
-        }`}
-      >
-        <button className="md:mr-5">
-          <MdOutlineColorLens title="Background Color" />
-        </button>
-        <button className="md:mr-5">
-          <MdOutlineArchive title="Archive" />
-        </button>
-        <button
-          className="md:mr-5"
-          onClick={() => handleNoteDelete(notes, setNotes, id)}
+      <div className="flex mt-5 mb-2 mx-1 justify-between flex-col">
+        <div className="mb-3">
+          <span>{`${noteDate.toLocaleDateString()} ${noteDate.toLocaleTimeString()}`}</span>
+        </div>
+
+        <div
+          className={`flex text-2xl transition-opacity ${
+            showActionBtn ? "md:opacity-1" : "md:opacity-0"
+          }`}
         >
-          <MdOutlineDelete title="Delete" />
-        </button>
-        <button className="md:mr-5">
-          <MdOutlineNewLabel title="Add Label" />
-        </button>
-        <button className="md:mr-5">
-          <MdOutlineContentCopy title="Make a copy" />
-        </button>
+          <button className="mr-5">
+            <MdOutlineColorLens title="Background Color" />
+          </button>
+          <button className="mr-5">
+            <MdOutlineArchive title="Archive" />
+          </button>
+          <button
+            className="mr-5"
+            onClick={() => handleNoteDelete(notes, setNotes, id)}
+          >
+            <MdOutlineDelete title="Delete" />
+          </button>
+          <button className="mr-5">
+            <MdOutlineNewLabel title="Add Label" />
+          </button>
+          <button className="mr-5">
+            <MdOutlineContentCopy title="Make a copy" />
+          </button>
+        </div>
       </div>
 
       {showModal && (
