@@ -11,6 +11,7 @@ import { NoteCard } from "./NoteCard/NoteCard";
 import { TrashCard } from "./TrashCard/TrashCard";
 import { Modal } from "./Modal/Modal";
 import { ReactPortal } from "./ReactPortal/ReactPortal";
+import { SortByDate } from "./SortByDate/SortByDate";
 
 export {
   PrimaryBtn,
@@ -26,4 +27,5 @@ export {
   TrashCard,
   Modal,
   ReactPortal,
+  SortByDate,
 };

@@ -30,12 +30,12 @@ export const AddNote = () => {
         id: uuidv4(),
         title: noteDetails.title,
         noteText: noteDetails.noteText,
-        dateCreated: new Date(),
+        dateCreated: Date.now(),
         isArchived: false,
         isInTrash: false,
         bgColor: "white",
         labels: [],
-        updatedAt: new Date(),
+        updatedAt: Date.now(),
       };
 
       const notesList = [...notes, note];
@@ -71,7 +71,7 @@ export const AddNote = () => {
   };
 
   return (
-    <section className="my-5 p-2 max-width-md mx-auto rounded border border-black">
+    <section className="mb-5  mt-10 p-2 max-width-md mx-auto rounded border border-black">
       <form className="flex flex-col">
         {isNoteAdding && (
           <TitleInput
