@@ -9,14 +9,13 @@ export const Trash = () => {
   return (
     <div className="md:ml-72">
       <main className="mx-5">
-        {notesInTrash.map((note) => {
+        {notesInTrash.map((note, index) => {
           return (
             <TrashCard
               title={note.title}
               noteText={note.noteText}
               id={note.id}
               key={note.id}
-              updatedAt={note.updatedAt}
             />
           );
         })}

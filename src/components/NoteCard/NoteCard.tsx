@@ -12,9 +12,18 @@ import { useData } from "../../context";
 import { NoteCardProps } from "../component.types";
 import { ReactPortal } from "../ReactPortal/ReactPortal";
 import { Modal } from "../Modal/Modal";
+import { ColorBox } from "../ColorBox/ColorBox";
 
-export const NoteCard = ({ title, noteText, id, updatedAt }: NoteCardProps) => {
-  const [showActionBtn, setShowActionBtn] = useState(false);
+export const NoteCard = ({
+  title,
+  noteText,
+  id,
+  updatedAt,
+  isColorBoxVisible,
+  setIsColorBoxVisible,
+  index,
+  bgColor,
+}: NoteCardProps) => {
   const [showModal, setShowModal] = useState(false);
 
   const { notes, setNotes } = useData();
@@ -22,9 +31,7 @@ export const NoteCard = ({ title, noteText, id, updatedAt }: NoteCardProps) => {
 
   return (
     <article
-      className="p-2 my-5 border-2 border-black rounded-lg max-w-3xl mx-auto whitespace-pre-wrap break-words"
-      onMouseEnter={() => setShowActionBtn(true)}
-      onMouseLeave={() => setShowActionBtn(false)}
+      className={`p-2 my-5 border-2 border-black rounded-lg max-w-3xl mx-auto whitespace-pre-wrap break-words bg-${bgColor}`}
     >
       <div onClick={() => setShowModal(true)} className="cursor-pointer">
         <h2 className="text-xl font-semibold text-xl mb-3 text-ellipsis	whitespace-nowrap	overflow-hidden mb-5">
@@ -45,14 +52,27 @@ export const NoteCard = ({ title, noteText, id, updatedAt }: NoteCardProps) => {
           <span>{`${noteDate.toLocaleDateString()} ${noteDate.toLocaleTimeString()}`}</span>
         </div>
 
-        <div
-          className={`flex text-2xl transition-opacity ${
-            showActionBtn ? "md:opacity-1" : "md:opacity-0"
-          }`}
-        >
-          <button className="mr-5">
-            <MdOutlineColorLens title="Background Color" />
-          </button>
+        <div className={`flex text-2xl`}>
+          <div className="relative mr-5 flex items-center">
+            <button>
+              <MdOutlineColorLens
+                title="Background Color"
+                onClick={() => {
+                  setIsColorBoxVisible &&
+                    setIsColorBoxVisible((c) => ({
+                      ...c,
+                      index: index,
+                      isVisible: c.index === index ? !c.isVisible : true,
+                    }));
+                }}
+              />
+            </button>
+
+            {isColorBoxVisible?.isVisible &&
+              index === isColorBoxVisible.index && (
+                <ColorBox id={id} bgColor={bgColor} />
+              )}
+          </div>
           <button className="mr-5">
             <MdOutlineArchive title="Archive" />
           </button>

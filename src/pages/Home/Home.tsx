@@ -5,6 +5,11 @@ import { useData } from "../../context";
 
 export const Home = () => {
   const [sortBy, setSortBy] = useState("oldest first");
+  const [isColorBoxVisible, setIsColorBoxVisible] = useState({
+    isVisible: false,
+    index: -1,
+  });
+
   const { notes, isLoading, getNotes } = useData();
   const uid = localStorage.getItem("userId");
 
@@ -32,7 +37,7 @@ export const Home = () => {
           <AddNote />
 
           <section>
-            {filteredNotes.map((note) => {
+            {filteredNotes.map((note, index) => {
               return (
                 <NoteCard
                   title={note.title}
@@ -40,6 +45,10 @@ export const Home = () => {
                   id={note.id}
                   key={note.id}
                   updatedAt={note.updatedAt}
+                  isColorBoxVisible={isColorBoxVisible}
+                  setIsColorBoxVisible={setIsColorBoxVisible}
+                  index={index}
+                  bgColor={note.bgColor}
                 />
               );
             })}
