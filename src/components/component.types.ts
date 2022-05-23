@@ -21,4 +21,15 @@ export type NoteCardProps = {
   >;
   index: number;
   bgColor: string;
+  noteLabels: string[];
+  labelDialogState: {
+    isVisible: boolean;
+    index: number;
+  };
+  setLabelDialogState: React.Dispatch<
+    React.SetStateAction<{
+      isVisible: boolean;
+      index: number;
+    }>
+  >;
 };

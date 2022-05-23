@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
-import { childrenType, NoteType } from "./context.type";
+import { childrenType, LabelType, NoteType } from "./context.type";
 import { db } from "../config/firebase-config";
 
 type DataContextProviderProps = {
@@ -10,17 +10,18 @@ type DataContextProviderProps = {
 
 type DataContextType = {
   notes: NoteType[];
-  labels: string[];
+  labels: LabelType[];
   isLoading: boolean;
   getNotes: () => Promise<void>;
   setNotes: React.Dispatch<React.SetStateAction<NoteType[]>>;
+  setLabels: React.Dispatch<React.SetStateAction<LabelType[]>>;
 };
 
 const DataContext = createContext({} as DataContextType);
 
 const DataContextProvider = ({ children }: DataContextProviderProps) => {
   const [notes, setNotes] = useState<NoteType[]>([]);
-  const [labels, setLabels] = useState<string[]>([]);
+  const [labels, setLabels] = useState<LabelType[]>([]);
   const [isLoading, setIsloading] = useState(false);
   const uid = localStorage.getItem("userId");
 

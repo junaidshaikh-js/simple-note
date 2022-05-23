@@ -13,3 +13,8 @@ export type NoteType = {
   labels: string[];
   updatedAt: number;
 };
+
+export type LabelType = {
+  id: string;
+  labelText: string;
+};
