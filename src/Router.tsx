@@ -11,6 +11,7 @@ import {
   PageNotFound,
   Login,
   Signup,
+  Label,
 } from "./pages";
 
 export const Router = () => {
@@ -48,6 +49,14 @@ export const Router = () => {
         element={
           <RequireAuth>
             <Signup />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/label/:labelName"
+        element={
+          <RequireAuth>
+            <Label />
           </RequireAuth>
         }
       />
