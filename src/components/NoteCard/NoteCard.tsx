@@ -7,7 +7,7 @@ import {
 } from "react-icons/md";
 import { useState } from "react";
 
-import { handleNoteDelete } from "./note-card-actions";
+import { handleNoteDelete, handleNoteArchive } from "./note-card-actions";
 import { useData } from "../../context";
 import { NoteCardProps } from "../component.types";
 import { ReactPortal } from "../ReactPortal/ReactPortal";
@@ -84,7 +84,10 @@ export const NoteCard = ({
               )}
           </div>
           <button className="mr-5">
-            <MdOutlineArchive title="Archive" />
+            <MdOutlineArchive
+              title="Archive"
+              onClick={() => handleNoteArchive(notes, setNotes, id)}
+            />
           </button>
           <button
             className="mr-5"

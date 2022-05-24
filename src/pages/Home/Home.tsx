@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { AddNote, Loader, NoteCard, SortByDate } from "../../components";
 import { useData } from "../../context";
+import { NoteType } from "../../context/context.type";
 
 export const Home = () => {
   const [sortBy, setSortBy] = useState("oldest first");
@@ -23,7 +24,14 @@ export const Home = () => {
     }
   }, [uid]);
 
-  const filteredNotes = notes.filter((note) => !note.isInTrash);
+  const getFilteredNotes = (notes: NoteType[]) => {
+    let filteredNotes = notes.filter((note) => !note.isInTrash);
+    filteredNotes = filteredNotes.filter((note) => !note.isArchived);
+
+    return filteredNotes;
+  };
+
+  const filteredNotes = getFilteredNotes(notes);
 
   if (sortBy === "latest first") {
     filteredNotes.sort((a, b) => b.updatedAt - a.updatedAt);
