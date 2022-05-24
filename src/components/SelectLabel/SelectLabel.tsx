@@ -69,7 +69,10 @@ export const SelectLabel = ({ noteLabels, id, labels }: SelectLabelProps) => {
   };
 
   return (
-    <div className="absolute bg-black w-60 max-h-96 top-full text-xl p-2 py-4 px-4 text-white z-10">
+    <div
+      className="absolute bg-black w-60 max-h-96 top-full text-xl p-2 py-4 px-4 text-white z-10 
+    "
+    >
       <span className="block my-2">Label Note</span>
 
       <div className="my-2">

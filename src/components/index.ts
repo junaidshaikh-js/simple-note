@@ -13,6 +13,7 @@ import { Modal } from "./Modal/Modal";
 import { ReactPortal } from "./ReactPortal/ReactPortal";
 import { SortByDate } from "./SortByDate/SortByDate";
 import { ColorBox } from "./ColorBox/ColorBox";
+import { LabelTag } from "./LabelTag/LabelTag";
 
 export {
   PrimaryBtn,
@@ -30,4 +31,5 @@ export {
   ReactPortal,
   SortByDate,
   ColorBox,
+  LabelTag,
 };
