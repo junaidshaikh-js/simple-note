@@ -98,7 +98,7 @@ export const Aside = ({ isSideMenuOpen }: AsideProps) => {
         </ul>
 
         <div className="flex items-center justify-between pl-5 text-xl text-primary mt-auto hover:font-bold">
-          <span>{auth.currentUser?.displayName}</span>
+          <span>{auth.currentUser?.displayName || "Junaid"}</span>
           <button
             onClick={async () => {
               await authData.logout();
