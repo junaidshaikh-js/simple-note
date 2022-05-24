@@ -23,6 +23,10 @@ body {
   min-height: 90vh;
 }
 
+.max-width-sm {
+  width: min(90vw, 360px);
+}
+
 .form-wrapper,
 .max-width-md {
   width: min(90vw, 598px);

@@ -13,6 +13,8 @@ import { NoteCardProps } from "../component.types";
 import { ReactPortal } from "../ReactPortal/ReactPortal";
 import { Modal } from "../Modal/Modal";
 import { ColorBox } from "../ColorBox/ColorBox";
+import { LabelTag } from "../LabelTag/LabelTag";
+import { SelectLabel } from "../SelectLabel/SelectLabel";
 
 export const NoteCard = ({
   title,
@@ -23,15 +25,18 @@ export const NoteCard = ({
   setIsColorBoxVisible,
   index,
   bgColor,
+  noteLabels,
+  labelDialogState,
+  setLabelDialogState,
 }: NoteCardProps) => {
   const [showModal, setShowModal] = useState(false);
 
-  const { notes, setNotes } = useData();
+  const { notes, setNotes, labels } = useData();
   const noteDate = new Date(updatedAt);
 
   return (
     <article
-      className={`p-2 my-5 border-2 border-black rounded-lg max-w-3xl mx-auto whitespace-pre-wrap break-words bg-${bgColor}`}
+      className={`p-2 my-5 relative border-2 border-black rounded-lg max-w-3xl mx-auto whitespace-pre-wrap break-words bg-${bgColor}`}
     >
       <div onClick={() => setShowModal(true)} className="cursor-pointer">
         <h2 className="text-xl font-semibold text-xl mb-3 text-ellipsis	whitespace-nowrap	overflow-hidden mb-5">
@@ -48,6 +53,11 @@ export const NoteCard = ({
       </div>
 
       <div className="flex mt-5 mb-2 mx-1 justify-between flex-col">
+        <div className="my-2 flex">
+          {noteLabels.map((label) => (
+            <LabelTag currentLabel={label} noteId={id} />
+          ))}
+        </div>
         <div className="mb-3">
           <span>{`${noteDate.toLocaleDateString()} ${noteDate.toLocaleTimeString()}`}</span>
         </div>
@@ -82,9 +92,24 @@ export const NoteCard = ({
           >
             <MdOutlineDelete title="Delete" />
           </button>
-          <button className="mr-5">
-            <MdOutlineNewLabel title="Add Label" />
-          </button>
+          <div className="mr-5 flex items-center">
+            <button>
+              <MdOutlineNewLabel
+                title="Add Label"
+                onClick={() => {
+                  setLabelDialogState((c) => ({
+                    ...c,
+                    index: index,
+                    isVisible: c.index === index ? !c.isVisible : true,
+                  }));
+                }}
+              />
+            </button>
+
+            {labelDialogState.isVisible && labelDialogState.index === index && (
+              <SelectLabel noteLabels={noteLabels} id={id} labels={labels} />
+            )}
+          </div>
           <button className="mr-5">
             <MdOutlineContentCopy title="Make a copy" />
           </button>

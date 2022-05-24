@@ -9,6 +9,10 @@ export const Home = () => {
     isVisible: false,
     index: -1,
   });
+  const [labelDialogState, setLabelDialogState] = useState({
+    isVisible: false,
+    index: -1,
+  });
 
   const { notes, isLoading, getNotes } = useData();
   const uid = localStorage.getItem("userId");
@@ -49,6 +53,9 @@ export const Home = () => {
                   setIsColorBoxVisible={setIsColorBoxVisible}
                   index={index}
                   bgColor={note.bgColor}
+                  noteLabels={note.labels}
+                  labelDialogState={labelDialogState}
+                  setLabelDialogState={setLabelDialogState}
                 />
               );
             })}
