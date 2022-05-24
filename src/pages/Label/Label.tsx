@@ -3,6 +3,7 @@ import { MdLabelOutline } from "react-icons/md";
 import { LabelTag } from "../../components";
 
 import { useData } from "../../context";
+import { LabelTag } from "../../components/LabelTag/LabelTag";
 
 export const Label = () => {
   const { labelName } = useParams();

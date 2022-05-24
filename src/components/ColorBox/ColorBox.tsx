@@ -47,7 +47,7 @@ export const ColorBox = ({ id, bgColor }: ColorBoxProps) => {
   };
 
   return (
-    <section className="flex absolute top-full mt-2 bg-white p-3 border border-black rounded">
+    <section className="flex absolute top-full mt-2 bg-white p-3 border border-black rounded z-10">
       {colors.map((color) => {
         const lowerCaseColor = color.toLowerCase();
         return (

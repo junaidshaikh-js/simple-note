@@ -2,6 +2,7 @@ export type TrashCardProps = {
   title?: string;
   noteText: string;
   id: string;
+  bgColor: string;
 };
 
 export type NoteCardProps = {
