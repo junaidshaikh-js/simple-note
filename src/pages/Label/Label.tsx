@@ -19,10 +19,10 @@ export const Label = () => {
   return (
     <div className="md:ml-72">
       {!labelNotes.length ? (
-        <main className="flex items-center justify-center flex-col min-h-70 text-gray-500 text-xl">
+        <section className="flex items-center justify-center flex-col min-h-70 text-gray-500 text-xl">
           <MdLabelOutline className="text-6xl" />
           <p>No notes with label yet.</p>
-        </main>
+        </section>
       ) : (
         labelNotes.map((note) => {
           return (
