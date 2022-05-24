@@ -10,6 +10,10 @@ export const Navigation = () => {
   const location = useLocation();
 
   useEffect(() => {
+    document.body.style.overflow = isSideMenuOpen ? "hidden" : "auto";
+  }, [isSideMenuOpen]);
+
+  useEffect(() => {
     setIsSideMenuOpen(false);
   }, [location]);
 
