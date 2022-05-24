@@ -102,6 +102,7 @@ export const EditLabelModal = ({ setShowLabelModal }: EditLabelModalProps) => {
     const updatedLabelList = labels.filter((label) => label.id !== id);
     updateLabel(updatedLabelList, uid);
     updateRenameState(false, -1);
+    setLabelValue("");
     setLabels(updatedLabelList);
   };
 

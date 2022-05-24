@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { MdLabelOutline } from "react-icons/md";
+import { LabelTag } from "../../components";
 
 import { useData } from "../../context";
 
@@ -8,11 +9,7 @@ export const Label = () => {
   const { notes } = useData();
 
   const labelNotes = notes.filter((note) => {
-    for (let label of note.labels) {
-      return label === labelName;
-    }
-
-    return false;
+    return note.labels.includes(labelName ? labelName : "");
   });
 
   return (
@@ -24,7 +21,24 @@ export const Label = () => {
         </section>
       ) : (
         labelNotes.map((note) => {
-          return <p>{note.noteText}</p>;
+          return (
+            <article
+              className={`p-2 my-5 mx-5 border-2 border-black rounded-lg max-w-3xl mx-auto whitespace-pre-wrap break-words bg-${note.bgColor}`}
+            >
+              <div>
+                <h2 className="text-xl font-semibold text-xl mb-3">
+                  {note.title}
+                </h2>
+                <p>{note.noteText}</p>
+              </div>
+
+              <div className="my-2 flex">
+                {note.labels.map((label) => (
+                  <LabelTag currentLabel={label} noteId={note.id} />
+                ))}
+              </div>
+            </article>
+          );
         })
       )}
     </div>
