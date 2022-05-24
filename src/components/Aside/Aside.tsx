@@ -26,7 +26,7 @@ export const Aside = ({ isSideMenuOpen }: AsideProps) => {
 
   return (
     <div
-      className={`overflow-auto absolute bg-grey h-90 transition-all z-10 md:fixed md:w-64 md:shadow-none ${
+      className={`overflow-auto absolute bg-grey h-90 transition-all z-20 md:fixed md:w-64 md:shadow-none ${
         isSideMenuOpen ? "w-6/12 shadow pr-5" : "w-0"
       }`}
     >

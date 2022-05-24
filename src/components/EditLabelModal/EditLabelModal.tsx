@@ -107,7 +107,7 @@ export const EditLabelModal = ({ setShowLabelModal }: EditLabelModalProps) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-wrapper flex items-center	justify-center z-10">
+    <div className="fixed inset-0 bg-wrapper flex items-center	justify-center z-30">
       <section className="bg-white p-3 rounded max-width-sm max-h-96">
         <div className="max-h-72 my-2 overflow-y-auto">
           <h1 className="font-bold my-2">Edit labels</h1>
