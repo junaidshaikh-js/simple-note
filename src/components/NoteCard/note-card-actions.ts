@@ -31,3 +31,30 @@ export const handleNoteDelete = async (
     toast.error("Please try again later.");
   }
 };
+
+export const handleNoteArchive = async (
+  notes: NoteType[],
+  setNotes: setNoteFunc,
+  id: string
+) => {
+  const uid = localStorage.getItem("userId") || "";
+  const notesList = notes.map((note) => {
+    if (note.id === id) {
+      return {
+        ...note,
+        isArchived: true,
+      };
+    }
+
+    return note;
+  });
+
+  try {
+    await addNote(notesList, uid);
+    setNotes(notesList);
+    toast.success("Note Archived");
+  } catch (error) {
+    console.log(error);
+    toast.error("Please try again later.");
+  }
+};
