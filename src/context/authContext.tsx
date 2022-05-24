@@ -4,6 +4,7 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -85,6 +86,12 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     navigate("/");
   };
 
+  const updateUser = (displayName: string) => {
+    if (auth.currentUser) {
+      return updateProfile(auth.currentUser, { displayName });
+    }
+  };
+
   const createUser = async (
     email: string,
     password: string,
@@ -97,6 +104,8 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         email,
         password
       );
+
+      await updateUser(firstName);
 
       const notesRef = doc(db, "notes", user.uid);
       setDoc(notesRef, {

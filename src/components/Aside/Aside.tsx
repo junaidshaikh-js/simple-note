@@ -8,6 +8,7 @@ import { useAuth, useData } from "../../context";
 import { Loader } from "../loader/Loader";
 import { ReactPortal } from "../ReactPortal/ReactPortal";
 import { EditLabelModal } from "../EditLabelModal/EditLabelModal";
+import { auth } from "../../config/firebase-config";
 
 type AsideProps = {
   isSideMenuOpen: boolean;
@@ -54,9 +55,9 @@ export const Aside = ({ isSideMenuOpen }: AsideProps) => {
             </span>
             Edit labels
           </li>
-          {labels.map(({ labelText }) => {
+          {labels.map(({ labelText, id }) => {
             return (
-              <li className="hover:bg-hoverClr hover:rounded-r-full">
+              <li className="hover:bg-hoverClr hover:rounded-r-full" key={id}>
                 <NavLink
                   to={`/label/${labelText}`}
                   className="pl-5 flex items-center text-xl my-2 py-2 w-full truncate"
@@ -97,7 +98,7 @@ export const Aside = ({ isSideMenuOpen }: AsideProps) => {
         </ul>
 
         <div className="flex items-center justify-between pl-5 text-xl text-primary mt-auto hover:font-bold">
-          <span>Junaid</span>
+          <span>{auth.currentUser?.displayName || "Junaid"}</span>
           <button
             onClick={async () => {
               await authData.logout();
