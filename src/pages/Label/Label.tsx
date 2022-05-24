@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { MdLabelOutline } from "react-icons/md";
 
 import { useData } from "../../context";
+import { LabelTag } from "../../components/LabelTag/LabelTag";
 
 export const Label = () => {
   const { labelName } = useParams();
@@ -24,9 +25,6 @@ export const Label = () => {
         </main>
       ) : (
         labelNotes.map((note) => {
-<<<<<<< Updated upstream
-          return <p>{note.noteText}</p>;
-=======
           return (
             <main>
               <article
@@ -47,7 +45,6 @@ export const Label = () => {
               </article>
             </main>
           );
->>>>>>> Stashed changes
         })
       )}
     </div>
