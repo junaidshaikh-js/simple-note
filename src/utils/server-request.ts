@@ -25,3 +25,15 @@ export const updateLabel = async (labelList: LabelType[], uid: string) => {
     console.log(error);
   }
 };
+
+export const copyNote = async (uid: string, notesList: NoteType[]) => {
+  try {
+    const docRef = doc(db, "notes", uid);
+
+    await updateDoc(docRef, {
+      notes: notesList,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
