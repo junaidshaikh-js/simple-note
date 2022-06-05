@@ -1,4 +1,4 @@
-import { useState, useRef, ChangeEvent } from "react";
+import { useState, useRef, ChangeEvent, useEffect } from "react";
 import toast from "react-hot-toast";
 
 import { useData } from "../../context";
@@ -23,18 +23,15 @@ export const Modal = ({ title, noteText, id, setShowModal }: ModalProps) => {
 
   const { notes, setNotes } = useData();
 
+  useEffect(() => {
+    textArea.current.style.height = "200px";
+    textArea.current.style.overflow = "auto";
+  }, []);
+
   const handleNoteChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name: key, value } = e.target;
-
-    if (key === "noteText") {
-      textArea.current.style.height = textArea.current.scrollHeight + "px";
-    }
-
-    if (key === "note" && value === "") {
-      textArea.current.style.height = "auto";
-    }
 
     setNoteDetails((d) => {
       return {
@@ -74,8 +71,14 @@ export const Modal = ({ title, noteText, id, setShowModal }: ModalProps) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-wrapper flex items-center	justify-center z-10">
-      <section className="my-5 p-2 bg-white max-width-md mx-auto rounded border border-black max-h-[70vh]	overflow-y-scroll">
+    <div
+      className="fixed inset-0 bg-wrapper flex items-center	justify-center z-20"
+      onClick={() => setShowModal((s) => !s)}
+    >
+      <section
+        className="my-5 p-2 bg-white max-width-md mx-auto rounded border border-black max-h-[70vh]	overflow-y-scroll"
+        onClick={(e) => e.stopPropagation()}
+      >
         <form className="flex flex-col">
           <TitleInput
             changeHandler={handleNoteChange}
