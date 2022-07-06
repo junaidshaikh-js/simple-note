@@ -50,7 +50,10 @@ export const EditLabelModal = ({ setShowLabelModal }: EditLabelModalProps) => {
 
     if (!labelValue) return;
 
-    if (isLabelExist(labelValue, labels)) setLabelError("Label already exists");
+    if (isLabelExist(labelValue, labels)) {
+      setLabelError("Label already exists");
+      return;
+    }
 
     const updatedLabelList = [
       ...labels,
@@ -107,8 +110,14 @@ export const EditLabelModal = ({ setShowLabelModal }: EditLabelModalProps) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-wrapper flex items-center	justify-center z-30">
-      <section className="bg-white p-3 rounded max-width-sm max-h-96">
+    <div
+      className="fixed inset-0 bg-wrapper flex items-center	justify-center z-30"
+      onClick={() => setShowLabelModal((s) => !s)}
+    >
+      <section
+        className="bg-white p-3 rounded max-width-sm max-h-96"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="max-h-72 my-2 overflow-y-auto">
           <h1 className="font-bold my-2">Edit labels</h1>
           <div className="flex items-center justify-center">

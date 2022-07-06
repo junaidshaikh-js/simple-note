@@ -7,7 +7,11 @@ import {
 } from "react-icons/md";
 import { useState } from "react";
 
-import { handleNoteDelete, handleNoteArchive } from "./note-card-actions";
+import {
+  handleNoteDelete,
+  handleNoteArchive,
+  handleNoteCopy,
+} from "./note-card-actions";
 import { useData } from "../../context";
 import { NoteCardProps } from "../component.types";
 import { ReactPortal } from "../ReactPortal/ReactPortal";
@@ -113,7 +117,10 @@ export const NoteCard = ({
               <SelectLabel noteLabels={noteLabels} id={id} labels={labels} />
             )}
           </div>
-          <button className="mr-5">
+          <button
+            className="mr-5"
+            onClick={() => handleNoteCopy(id, notes, setNotes)}
+          >
             <MdOutlineContentCopy title="Make a copy" />
           </button>
         </div>
