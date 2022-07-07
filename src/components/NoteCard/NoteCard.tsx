@@ -40,7 +40,10 @@ export const NoteCard = ({
 
   return (
     <article
-      className={`p-2 my-5 relative border-2 border-black rounded-lg max-w-3xl mx-auto whitespace-pre-wrap break-words bg-${bgColor}`}
+      className={`p-2 my-5 relative border-2 border-black rounded-lg max-w-3xl mx-auto whitespace-pre-wrap break-words`}
+      style={{
+        backgroundColor: bgColor,
+      }}
     >
       <div onClick={() => setShowModal(true)} className="cursor-pointer">
         <h2 className="text-xl font-semibold text-xl mb-3 text-ellipsis	whitespace-nowrap	overflow-hidden mb-5">
