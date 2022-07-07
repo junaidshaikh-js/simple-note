@@ -26,7 +26,10 @@ export const LandingPage = () => {
               <Link to="/signup">
                 <PrimaryBtn>Join Now</PrimaryBtn>
               </Link>
-              <Link to="/login" className="block my-2 hover:text-primaryDark">
+              <Link
+                to="/login"
+                className="block my-2 hover:text-primaryDark hover:underline"
+              >
                 Already have account?
               </Link>
             </div>
