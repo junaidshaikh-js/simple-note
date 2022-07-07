@@ -9,7 +9,7 @@ export const Trash = () => {
   const notesInTrash = notes.filter((note) => note.isInTrash);
 
   return (
-    <div className="md:ml-72">
+    <div className="md:ml-72 mt-20">
       <main className="mx-5">
         {!notesInTrash.length ? (
           <main className="flex items-center justify-center flex-col min-h-70 text-gray-500 text-xl">

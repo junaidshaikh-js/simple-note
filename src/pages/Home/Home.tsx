@@ -40,7 +40,7 @@ export const Home = () => {
   }
 
   return (
-    <div className="md:ml-72">
+    <div className="md:ml-72 mt-20">
       {isLoading ? (
         <Loader />
       ) : (

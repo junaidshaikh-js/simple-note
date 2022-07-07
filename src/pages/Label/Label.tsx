@@ -13,7 +13,7 @@ export const Label = () => {
   });
 
   return (
-    <div className="md:ml-72">
+    <div className="md:ml-72 mt-20">
       {!labelNotes.length ? (
         <section className="flex items-center justify-center flex-col min-h-70 text-gray-500 text-xl">
           <MdLabelOutline className="text-6xl" />
@@ -23,12 +23,10 @@ export const Label = () => {
         labelNotes.map((note) => {
           return (
             <article
-              className={`p-2 my-5 mx-5 border-2 border-black rounded-lg max-w-3xl mx-auto whitespace-pre-wrap break-words bg-${note.bgColor} md:mx-auto`}
+              className={`p-2 my-5  border-2 border-black rounded-lg max-w-3xl mx-auto whitespace-pre-wrap break-words bg-${note.bgColor} md:mx-auto`}
             >
               <div>
-                <h2 className="text-xl font-semibold text-xl mb-3">
-                  {note.title}
-                </h2>
+                <h2 className="text-xl font-semibold mb-3">{note.title}</h2>
                 <p>{note.noteText}</p>
               </div>
 

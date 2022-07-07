@@ -27,12 +27,12 @@ export const Aside = ({ isSideMenuOpen }: AsideProps) => {
 
   return (
     <div
-      className={`overflow-auto absolute bg-grey h-screen transition-all z-20 md:fixed md:w-64 md:shadow-none ${
+      className={`overflow-auto absolute bg-grey h-screen transition-all z-10 md:fixed top-14 md:w-64 md:shadow-none ${
         isSideMenuOpen ? "w-6/12 shadow pr-5" : "w-0"
       }`}
     >
       {authData.loading && <Loader />}
-      <nav className="flex flex-col py-5 h-screen">
+      <nav className="flex flex-col py-5 overflow-auto mb-14">
         <ul>
           <li className="hover:bg-hoverClr hover:rounded-r-full">
             <NavLink
@@ -97,7 +97,7 @@ export const Aside = ({ isSideMenuOpen }: AsideProps) => {
           </li>
         </ul>
 
-        <div className="flex items-center justify-between pl-5 text-xl text-primary  hover:font-bold mt-10">
+        <div className="flex items-center justify-between pl-5 text-xl text-primary  hover:font-bold my-5 mr-2">
           <span>{auth.currentUser?.displayName || "Junaid"}</span>
           <button
             onClick={async () => {
